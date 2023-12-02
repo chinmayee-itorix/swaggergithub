@@ -1,0 +1,104 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Sim Activation API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/v1/sim-activation/activate": {
+            "post": {
+                "summary": "Activate SIM",
+                "description": "Endpoint to activate a SIM card",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "activationRequest",
+                        "description": "JSON input for SIM activation",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "customer_id": {
+                                    "type": "integer",
+                                    "description": "ID of the customer"
+                                },
+                                "operation": {
+                                    "type": "string",
+                                    "description": "Type of SIM operation (e.g., \"activate\")"
+                                },
+                                "type": {
+                                    "type": "string",
+                                    "description": "Type of SIM (e.g., \"prepaid\")"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful activation response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "customer_id": {
+                                    "type": "integer",
+                                    "description": "ID of the customer"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "description": "Name of the customer"
+                                },
+                                "email": {
+                                    "type": "string",
+                                    "description": "Email of the customer"
+                                },
+                                "phone": {
+                                    "type": "string",
+                                    "description": "Phone number of the customer"
+                                },
+                                "address": {
+                                    "type": "string",
+                                    "description": "Address of the customer"
+                                },
+                                "simid": {
+                                    "type": "integer",
+                                    "description": "ID of the activated SIM"
+                                },
+                                "status": {
+                                    "type": "string",
+                                    "description": "Activation status (e.g., \"active\")"
+                                },
+                                "message": {
+                                    "type": "string",
+                                    "description": "Activation message (e.g., \"Activated Successfully\")"
+                                },
+                                "type": {
+                                    "type": "string",
+                                    "description": "Type of SIM (e.g., \"prepaid\")"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request, invalid input",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string",
+                                    "description": "Error message indicating the cause of the issue"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
